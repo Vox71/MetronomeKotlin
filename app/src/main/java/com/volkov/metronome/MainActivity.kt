@@ -1,5 +1,6 @@
 package com.volkov.metronome
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +11,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_main.*
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     // These private variables help keep track of increasing/decreasing the BPM
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var autoDecrement: Boolean = false
     private var repeatUpdateHandler: Handler = Handler()
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,10 +28,10 @@ class MainActivity : AppCompatActivity() {
             override fun run() {
                 if (autoIncrement) {
                     updateBPM(true)
-                    repeatUpdateHandler.postDelayed(RepetitiveUpdater(), 50L)
+                    repeatUpdateHandler.postDelayed(RepetitiveUpdater(), 1L)
                 } else if (autoDecrement) {
                     updateBPM(false)
-                    repeatUpdateHandler.postDelayed(RepetitiveUpdater(), 50L)
+                    repeatUpdateHandler.postDelayed(RepetitiveUpdater(), 1L)
                 }
             }
         }

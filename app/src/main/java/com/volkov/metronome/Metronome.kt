@@ -22,6 +22,7 @@ object Metronome {
     private const val MILLISECONDS_IN_SECOND: Int = 1000
     private const val SECONDS_IN_MINUTE: Int = 60
 
+
     private var metronomeState: MetronomeState
     private var metronome: Timer
 
@@ -49,7 +50,8 @@ object Metronome {
         this.metronome.schedule(
             timerTask {
                 val toneGenerator = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-                toneGenerator.startTone(METRONOME_TONE)
+                toneGenerator.startTone(METRONOME_TONE, 35)
+                Thread.sleep(45)
                 toneGenerator.release()
             },
             0L,
